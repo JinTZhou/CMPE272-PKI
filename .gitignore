@@ -1,0 +1,11 @@
+/ca/
+/certs/
+/keystore/
+/tomcat/
+/downloads/
+*.key
+*.p12
+*.pfx
+*.jks
+*.log
+.env

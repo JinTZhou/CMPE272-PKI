@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server port="-1">
+  <Service name="Catalina">
+    <Connector port="8443" address="127.0.0.1"
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+               sslImplementationName="org.apache.tomcat.util.net.jsse.JSSEImplementation"
+               SSLEnabled="true">
+      <SSLHostConfig protocols="TLSv1.2,TLSv1.3">
+        <Certificate certificateKeystoreFile="conf/tomcat.p12"
+                     certificateKeystorePassword="REPLACE_WITH_EXPORT_PASSWORD"
+                     certificateKeystoreType="PKCS12"
+                     certificateKeyAlias="tomcat"
+                     type="RSA" />
+      </SSLHostConfig>
+    </Connector>
+    <Engine name="Catalina" defaultHost="localhost">
+      <Host name="localhost" appBase="webapps"
+            unpackWARs="true" autoDeploy="true" />
+    </Engine>
+  </Service>
+</Server>

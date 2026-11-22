@@ -1,0 +1,46 @@
+# Run commands from the pki-hw directory.
+[ ca ]
+default_ca = CA_default
+
+[ CA_default ]
+dir = ./ca/root
+database = $dir/index.txt
+new_certs_dir = $dir/newcerts
+certificate = $dir/certs/root.crt
+private_key = $dir/private/root.key
+serial = $dir/serial
+default_md = sha256
+default_days = 1825
+policy = policy_hw
+unique_subject = no
+copy_extensions = none
+
+[ policy_hw ]
+countryName = optional
+stateOrProvinceName = optional
+localityName = optional
+organizationName = match
+organizationalUnitName = optional
+commonName = supplied
+
+[ req ]
+prompt = no
+default_md = sha256
+distinguished_name = dn
+x509_extensions = root_ext
+
+[ dn ]
+O = PKI HW
+CN = PKI HW Root CA
+
+[ root_ext ]
+basicConstraints = critical, CA:true, pathlen:1
+keyUsage = critical, keyCertSign, cRLSign
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always
+
+[ signing_ext ]
+basicConstraints = critical, CA:true, pathlen:0
+keyUsage = critical, keyCertSign, cRLSign
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always, issuer
